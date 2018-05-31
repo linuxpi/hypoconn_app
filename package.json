@@ -25,6 +25,8 @@
     "webpack-dev-server": "^3.1.4"
   },
   "dependencies": {
-    "file-loader": "^1.1.11"
+    "babel-polyfill": "^6.26.0",
+    "file-loader": "^1.1.11",
+    "react-form-with-constraints": "^0.8.0"
   }
 }
