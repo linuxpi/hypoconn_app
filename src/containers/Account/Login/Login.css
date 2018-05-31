@@ -1,3 +1,14 @@
+@keyframes loading {
+  0% {height: 100%; width: 100%;}
+  50% {height: 60%; width: 60%;}
+  100% {height: 100%; width: 100%;}
+}
+
+@keyframes slide-in {
+  0% {height: 0px;}
+  100% {height: 50px;}
+}
+
 .loginContainer {
     background-color: white;
     text-align: center;
@@ -53,15 +64,24 @@
     box-shadow: 0 2px 7px #F85858AA;
 }
 
+.btnContainer {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 0 10% 10% 0;
+  width: 60px;
+  height: 60px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .submitButton {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    margin: 0 10% 10% 0;
+    transition: background-color 1s ease;
+    width: 100%;
+    height: 100%;
     background-color: #F85858;
     border-radius: 50%;
-    width: 60px;
-    height: 60px;
     border-width: 0;
     color: white;
     box-shadow: 0 15px 40px -10px #F85858CC;
@@ -77,6 +97,7 @@
 }
 
 .disabledButton {
+    transition: background-color 1s ease;
     background-color: grey;
     box-shadow: 0 15px 40px -10px #00000044;
 }
@@ -86,8 +107,8 @@
 }
 
 .errorContainer {
-    position: absolute;
-    bottom: 160px;
+    position: fixed;
+    bottom: 140px;
     left: 56px;
     width: 70%;
     max-width: 764px;
@@ -96,6 +117,8 @@
     border-radius: 5px;
     color: white;
     opacity: .85;
+    min-height: 50px;
+    transition: all .4s ease-out, opacity .2s ease-in;
 }
 
 .errorContainer > div {
@@ -112,5 +135,13 @@
 }
 
 .hidebox {
-    opacity: 0;
+  opacity: 0;
+  left: 24px;
+}
+
+.loader {
+  animation-name: loading;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-out;
 }

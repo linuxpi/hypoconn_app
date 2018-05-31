@@ -1,5 +1,5 @@
 export function login(data) {
-    return fetch('http://127.0.0.1:8000/users/login/',
+    return fetch('http://192.168.1.50:8001/users/login/',
         {
             method: 'post',
             headers: { 'content-type': 'application/json' },
