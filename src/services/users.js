@@ -1,11 +1,17 @@
 export function login(data) {
-    return fetch('http://192.168.1.50:8001/users/login/',
+    return fetch('http://localhost:8080/hypoconn/login',
         {
             method: 'post',
-            headers: { 'content-type': 'application/json' },
+            headers: { 'Content-Type': 'application/json; charset=utf-8' },
             body: JSON.stringify(data)
         })
-        .then(res => res.json())
+        .then(res => res.json()).then(response => {
+            if (response.status >= 200 && response.status < 300) {
+                return Promise.resolve(response);
+            } else {
+                return Promise.reject(response);
+            }
+        });
 }
 
 

@@ -36,7 +36,7 @@ export default class LoginComponent extends Component {
       this.setState({ errors: errors });
       return isFieldValid;
     });
-    this.setState({ formValid: this.form.isValid() });
+    this.setState({ formValid: this.form.isValid(), loginError: undefined });
   }
 
   async handleSubmit() {
@@ -49,11 +49,10 @@ export default class LoginComponent extends Component {
       requestData[PASSWORD] = this.state[PASSWORD];
       this.setState({ loggingIn: true });
       login(requestData).then(res => {
-        console.log(res);
+        localStorage.setItem('token', res.token);
         this.setState({ loggingIn: false });
-      }, (err) => {
-        console.log(err);
-        this.setState({ loggingIn: false });
+      }).catch((err) => {
+        this.setState({'loginError': err.error, loggingIn: false});
       });
     }
   }
@@ -99,6 +98,9 @@ export default class LoginComponent extends Component {
               <FieldFeedbacks for={PASSWORD}>
                 <FieldFeedback when="valueMissing">password is required!</FieldFeedback>
               </FieldFeedbacks>
+            </div>
+            <div className={`${styles.errorContainer} ${!this.state.loginError ? styles.hidebox : ''}`}>
+               <div><span>{this.state.loginError}</span></div>
             </div>
           </FormWithConstraints>
           <div className={styles.btnContainer}>
